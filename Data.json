@@ -1,0 +1,38 @@
+{
+  "login": {
+    "valid": {
+      "username": "Admin",
+      "password": "admin123"
+    },
+    "invalid": {
+      "username": "Admin!@#",
+      "password": "admin123!@#"
+    }
+  },
+  "employees": [
+    {
+      "first_name": "Employee",
+      "middle_name": "TP",
+      "last_name": "001",
+      "employee_id": "TP001"
+    },
+    {
+      "first_name": "Employee",
+      "middle_name": "TP",
+      "last_name": "002",
+      "employee_id": "TP002"
+    },
+    {
+      "first_name": "Employee",
+      "middle_name": "TP",
+      "last_name": "003",
+      "employee_id": "TP003"
+    },
+    {
+      "first_name": "Employee",
+      "middle_name": "TP",
+      "last_name": "004",
+      "employee_id": "TP004"
+    }
+  ]
+}
