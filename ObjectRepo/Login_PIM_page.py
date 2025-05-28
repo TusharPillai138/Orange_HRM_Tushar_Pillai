@@ -36,18 +36,18 @@ class LoginPIM(BaseClass):
         assert dashboard == "Dashboard", f"login failed"
 
     def add_employees(self):
-        # PIM = self.driver.find_element(By.XPATH)
-        # dashboard = self.driver.find_element(By.XPATH, "(//span[.='PIM'])[1]").text
-        # hover = ActionChains
-        # hover.move_to_element(to_element=PIM).perform()
-
         self.driver.find_element(By.XPATH, "(//span[.='PIM'])[1]").click()
         time.sleep(2)
         self.driver.find_element(By.XPATH, "//a[.= 'Add Employee']").click()
         time.sleep(2)
-
         # running a loop to add 4 employees
-        for first_name, middle_name, last_name, emp_id in employees:
+
+        for emp in employees:
+            first_name = emp["first_name"]
+            middle_name = emp["middle_name"]
+            last_name = emp["last_name"]
+            emp_id = emp["employee_id"]
+
             # entering employee details
             first_name_input = self.driver.find_element(By.XPATH, "//input[@name='firstName']")
             first_name_input.clear()
@@ -77,7 +77,8 @@ class LoginPIM(BaseClass):
 
     def verify_added_employees(self):
         # running a loop to verify added employee name using their ID
-        for first_name, middle_name, last_name, emp_id in [employees[3]]:
+        for emp in [employees[3]]:
+            emp_id = emp["employee_id"]
             self.driver.find_element(By.XPATH, "(//input[@class ='oxd-input oxd-input--active'])[2]").clear()
             self.driver.find_element(By.XPATH, "(//input[@class ='oxd-input oxd-input--active'])[2]").send_keys(emp_id)
             self.driver.find_element(By.XPATH, "//button[@type='submit']").click()
@@ -88,6 +89,10 @@ class LoginPIM(BaseClass):
             print("Name Verified")
             self.driver.execute_script("window.scrollTo(0, 0);")
 
+
+    def logout(self):
+        self.driver.find_element(By.XPATH, "//i[@class='oxd-icon bi-caret-down-fill oxd-userdropdown-icon']").click()
+        self.driver.find_element(By.XPATH, "(//a[@role='menuitem'])[4]").click()
 
 
 
